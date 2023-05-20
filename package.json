@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress open --e2e",
-    "ci":"npx cypress run -- --parallel --ci-build-id 1"
+    "ci":"npx cypress run -- --parallel --ci-build-id ${GITHUB_RUN_ID}"
   },
   "repository": {
     "type": "git",
