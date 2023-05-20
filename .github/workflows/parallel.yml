@@ -21,15 +21,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: "18"
 
       - name: Install dependencies
         run: npm install
-        
-      - name: Download the build folder
-        uses: actions/download-artifact@v3
-        with:
-          name: build
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
@@ -38,3 +33,8 @@ jobs:
           record: true
           parallel: true
           start: npm start
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
