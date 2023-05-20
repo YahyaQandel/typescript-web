@@ -29,8 +29,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          build: npm run ci
-          record: true
+          build: npx cypress run --record --key classkey -- --parallel --ci-build-id ${GITHUB_RUN_ID} 
           parallel: true
 
       - name: Download the build folder
