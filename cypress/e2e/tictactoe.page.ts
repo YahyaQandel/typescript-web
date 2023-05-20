@@ -11,11 +11,29 @@ export class TicTacToe {
         cy.visit(this._url);
     }
 
-    get board(): Board {
-        return this._board;
+    play(index: number, symbol: string): void {
+        this._board.squares[index].click();
+        this._board.updateBoardState(index, symbol);
+        this._board.currentMove++;
     }
 
-    get info(): InfoSection {
-        return this._infoPanel;
+    get winner(): Cypress.Chainable<any> {
+        return this._infoPanel.winner;
+    }
+
+    getCell(index: number): Cypress.Chainable<any> {
+        return this._board.squares[index].get();
+    }
+
+    goToMove(moveNumber: number): void {
+        this._infoPanel.goToMove(moveNumber);
+    }
+
+    getBoardStateAtMove(move: number): string[] {
+        return this._board.getBoardStateAtMove(move);
+    }
+
+    get currentBoardState(): Promise<string[]> {
+        return this._board.currentBoardState;
     }
 }
