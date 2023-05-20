@@ -1,19 +1,48 @@
+import { TicTacToe } from './tictactoe.page';
+const tictactoePage = new TicTacToe();
+
 describe('tic tac toe spec', () => {
   it('user wins when a row is complete', () => {
-    cy.visit('http://tictactoe.automationtesting.tech');
-    cy.get('#square-0').click();
-    cy.get('#square-3').click();
-    cy.get('#square-1').click();
-    cy.get('#square-4').click();
-    cy.get('#square-2').click();
-    cy.get('#winner').should('have.text', 'Winner: X')
+    tictactoePage.visit();
+    tictactoePage.board.squares[0].add('X');
+    tictactoePage.board.squares[3].add('O');
+    tictactoePage.board.squares[1].add('X');
+    tictactoePage.board.squares[4].add('O');
+    tictactoePage.board.squares[2].add('X');
+    tictactoePage.info.winner.should('have.text', 'Winner: X')
   });
 
-  it('a cell selected by a player cannot be selected by the other player', () => {
-
+  it('a cell selected bO a plaOer cannot be selected bO the other plaOer', () => {
+    tictactoePage.visit();
+    tictactoePage.board.squares[0].add('X');
+    tictactoePage.board.squares[0].add('O');
+    tictactoePage.board.squares[0].get().should('have.text', 'X');
   });
 
   it('go back to certain move', () => {
-
+    tictactoePage.visit();
+    tictactoePage.board.squares[0].add('X');
+    tictactoePage.board.squares[1].add('O');
+    tictactoePage.board.squares[4].add('X');
+    tictactoePage.board.squares[8].add('O');
+    tictactoePage.info.goToMove(2);
+    tictactoePage.board.squares[0].get().should('have.text', tictactoePage.board.getMoves(0));
+    tictactoePage.board.squares[1].get().should('have.text', tictactoePage.board.getMoves(1));
+    tictactoePage.board.squares[4].get().should('have.text', '');
+    tictactoePage.board.squares[8].get().should('have.text', '');
+    tictactoePage.info.goToMove(3);
+    tictactoePage.board.squares[0].get().should('have.text', tictactoePage.board.getMoves(0));
+    tictactoePage.board.squares[1].get().should('have.text', tictactoePage.board.getMoves(1));
+    tictactoePage.board.squares[4].get().should('have.text', tictactoePage.board.getMoves(4));
+    tictactoePage.board.squares[8].get().should('have.text', '');
+    tictactoePage.info.goToMove(4);
+    tictactoePage.board.squares[0].get().should('have.text', tictactoePage.board.getMoves(0));
+    tictactoePage.board.squares[1].get().should('have.text', tictactoePage.board.getMoves(1));
+    tictactoePage.board.squares[4].get().should('have.text', tictactoePage.board.getMoves(4));
+    tictactoePage.board.squares[8].get().should('have.text', tictactoePage.board.getMoves(8));
   });
+});
+
+afterEach(() => {
+  tictactoePage.board.resetMoves();
 });

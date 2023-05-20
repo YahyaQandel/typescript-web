@@ -4,7 +4,7 @@
   "description": "Testing with cypress",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open"
+    "test": "cypress open --e2e"
   },
   "repository": {
     "type": "git",
