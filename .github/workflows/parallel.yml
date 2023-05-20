@@ -3,7 +3,7 @@ name: Cypress Parallel Tests
 on:
   push:
     branches:
-      - exercise
+      - exercise-parallelism
 
 jobs:
   run_tests:
