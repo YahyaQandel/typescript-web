@@ -29,10 +29,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          build: npm run build
+          build: npm run ci
           record: true
           parallel: true
-          start: npm start
 
       - name: Download the build folder
         uses: actions/download-artifact@v3
