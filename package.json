@@ -29,6 +29,6 @@
     "@cypress/browserify-preprocessor": "^3.0.2"
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/e2e/*.spec.ts"
+    "stepDefinitions": "cypress/e2e/**/*.spec.ts"
   }
 }
