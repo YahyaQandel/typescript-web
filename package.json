@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress open --e2e",
-    "ci":"npx cypress run -- --parallel --ci-build-id 1"
+    "ci": "npx cypress run -- --parallel --ci-build-id 1"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,12 @@
   "devDependencies": {
     "cypress": "^12.12.0",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^17.1.1",
+    "@cypress/browserify-preprocessor": "^3.0.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/e2e/*.spec.ts"
   }
 }

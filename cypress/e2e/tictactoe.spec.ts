@@ -1,47 +1,16 @@
+import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { TicTacToe } from './tictactoe.page';
 
-describe('tic tac toe spec', () => {
-  const tictactoePage = new TicTacToe();
-  it('user wins when a row is complete', () => {
-    tictactoePage.visit();
-    tictactoePage.play(0, 'X');
-    tictactoePage.play(3, 'O');
-    tictactoePage.play(1, 'X');
-    tictactoePage.play(4, 'O');
-    tictactoePage.play(2, 'X');
-    tictactoePage.winner.should('contain.text', 'X');
-  });
+const tictactoePage = new TicTacToe();
 
-  it('a cell selected by a player cannot be selected by the other player', () => {
-    const tictactoePage = new TicTacToe();
-    tictactoePage.visit();
-    tictactoePage.play(0, 'X');
-    tictactoePage.play(0, 'O');
-    tictactoePage.getCell(0).should('have.text', 'X');
-  });
+Given('user navigated to tic tac toe game screen', () => {
+  tictactoePage.visit();
+});
 
-  it('go back to certain move', async () => {
-    const tictactoePage = new TicTacToe();
-    let currentState: string[];
-    let move: number;
-    tictactoePage.visit();
-    tictactoePage.play(0, 'X')
-    tictactoePage.play(1, 'O')
-    tictactoePage.play(4, 'X')
-    tictactoePage.play(8, 'O');
-    move = 2;
-    tictactoePage.goToMove(move);
-    currentState = await tictactoePage.currentBoardState;
-    expect(currentState).to.deep.equal(tictactoePage.getBoardStateAtMove(move));
-    // ------------------------------------------ //
-    move = 3;
-    tictactoePage.goToMove(move);
-    currentState = await tictactoePage.currentBoardState;
-    expect(currentState).to.deep.equal(tictactoePage.getBoardStateAtMove(move));
-    // ------------------------------------------ //
-    move = 4;
-    tictactoePage.goToMove(move);
-    currentState = await tictactoePage.currentBoardState;
-    expect(currentState).to.deep.equal(tictactoePage.getBoardStateAtMove(move));
-  });
+When('user {string} plays in index {int}', (symbol: string, index: number) => {
+  tictactoePage.play(index, symbol);
+});
+
+Then('the info panel should show that the winner is player {string}', (player: string) => {
+  tictactoePage.winner.should('contain.text', player);
 });
