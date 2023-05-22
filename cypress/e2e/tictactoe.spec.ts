@@ -16,5 +16,5 @@ Then('the info panel should show that the winner is player {string}', (player: s
 });
 
 Then('cell {int} should has {string} as its value', (index: number, value: string) => {
-  tictactoePage.getCell(index - 1).should('have.text', 'X');
+  tictactoePage.getCell(index - 1).should('have.text', value);
 });
