@@ -23,8 +23,16 @@ Feature: Tic tac toe game
     Scenario: Verify that a cell selected by a player cannot be selected by the other player
         When user "X" plays in cell 1
         And user "O" plays in cell 1
-        Then cell 1 should has "X" as its value
+        Then cell 1 should have "X" as its value
 
-    @ignore
     Scenario: Verify going back to a certain move goes back to the correct board state
-        # TODO : Implement steps
+        When user "X" plays in cell 1
+        And user "O" plays in cell 2
+        And user "X" plays in cell 5
+        And user "O" plays in cell 9
+        And user moves back to move 2
+        Then cell 5 should have "" as its value
+        Then cell 9 should have "" as its value
+        Then cell 1 should have "X" as its value
+        Then cell 2 should have "O" as its value
+        Then board state is equal to its state at move 2

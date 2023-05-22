@@ -4,7 +4,7 @@
   "description": "Testing with cypress",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open --e2e --tags ~@ignore",
+    "test": "cypress open --e2e",
     "ci": "npx cypress run -e 'TAGS=not @ignore' -- --parallel --ci-build-id 1 "
   },
   "repository": {

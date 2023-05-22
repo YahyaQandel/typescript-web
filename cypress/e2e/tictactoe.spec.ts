@@ -11,10 +11,22 @@ When('user {string} plays in cell {int}', (symbol: string, index: number) => {
   tictactoePage.play(index - 1, symbol);
 });
 
+When('user moves back to move {int}', (move: number) => {
+  tictactoePage.goToMove(move);
+});
+
 Then('the info panel should show that the winner is player {string}', (player: string) => {
   tictactoePage.winner.should('contain.text', player);
 });
 
-Then('cell {int} should has {string} as its value', (index: number, value: string) => {
-  tictactoePage.getCell(index - 1).should('have.text', 'X');
+Then('cell {int} should have {string} as its value', (index: number, value: string) => {
+  tictactoePage.getCell(index - 1).should('have.text', value);
+});
+
+Then('board state is equal to its state at move {int}', (move: number) => {
+
+  // extra assertion to make sure board state didn't change
+  tictactoePage.currentBoardState.then((currentState) => {
+    expect(currentState).to.deep.equal(tictactoePage.getBoardStateAtMove(move));
+  });
 });
