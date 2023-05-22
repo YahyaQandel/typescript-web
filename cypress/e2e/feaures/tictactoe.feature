@@ -25,5 +25,6 @@ Feature: Tic tac toe game
         And user "O" plays in cell 1
         Then cell 1 should has "X" as its value
 
+    @ignore
     Scenario: Verify going back to a certain move goes back to the correct board state
         # TODO : Implement steps
