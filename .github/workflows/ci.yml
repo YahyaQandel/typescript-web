@@ -6,7 +6,7 @@ name: CI
 on:
   push:
     branches:
-      - "cucumber-examples"
+      - "cucumber-examples-answer"
 
 jobs:
   build:
